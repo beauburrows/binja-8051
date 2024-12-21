@@ -75,7 +75,8 @@ def dispatch_and_ret_addresses(input: bytes) -> FoundAddresses:
     return FoundAddresses(dispatch, ret)
 
 def add_segment_functions(bv: BinaryView, start: int, length: int) -> FoundAddresses | None:
-    data = bv.read(length, start)
+    reader = BinaryReader(bv)
+    data = reader.read(length, start)
     if not data:
         return
     addresses = dispatch_and_ret_addresses(data)
