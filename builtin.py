@@ -3,7 +3,7 @@ import typing
 import json
 from itertools import chain
 
-from .arch import REGISTERED_ARCH_NAMES
+from .arch import REGISTERED_ARCH_NAMES, get_variant_for_arch
 from .defs import *
 from .variant import Variant
 
@@ -172,9 +172,11 @@ class BuiltinReplacerActivity(Activity):
         return self.detector.found_addresses[bytes(ctx.view.handle)]
     
     def replace_functions(self, ctx: AnalysisContext):
-        if not ctx.view.arch or not ctx.view.arch.name in REGISTERED_ARCH_NAMES:
+        if not ctx.view.arch:
             return
-        variant = REGISTERED_ARCH_NAMES[ctx.view.arch.name]
+        variant = get_variant_for_arch(ctx.view.arch)
+        if not variant:
+            return
         for block in ctx.lifted_il:
             for instruction in block:
                 if self.is_dispatch_call(ctx, instruction):

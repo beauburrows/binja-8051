@@ -1,5 +1,5 @@
-from binaryninja import FlagRole, LowLevelILFlagCondition, Workflow
-from binaryninja.architecture import Architecture, RegisterInfo
+from binaryninja import FlagRole
+from binaryninja.architecture import Architecture
 from . import instructions
 from . import lift
 from . import variant
@@ -7,6 +7,13 @@ from . import callconv
 from .defs import *
 
 REGISTERED_ARCH_NAMES: dict[str, variant.Variant] = dict()
+
+def get_variant_for_arch(arch: Architecture) -> variant.Variant | None:
+    try:
+        if arch.name:
+            return REGISTERED_ARCH_NAMES[arch.name]
+    except KeyError:
+        pass
 
 class I8051Core(Architecture):
     name: str
