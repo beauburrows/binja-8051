@@ -6,9 +6,11 @@ from .defs import *
 arch.register(arch.I8051)
 arch.register(arch.I8051Bank16K)
 arch.register(arch.I8051Bank32K)
+arch.register(arch.I8051Bank48K)
 arch.register(arch.I8051XData24)
 arch.register(arch.I8051XData24Bank16K)
 arch.register(arch.I8051XData24Bank32K)
+arch.register(arch.I8051XData24Bank48K)
 
 workflow = Workflow("core.module.metaAnalysis").clone()
 workflow.register_activity(builtin.builtin_detection)

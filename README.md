@@ -1,0 +1,1 @@
+Fork of 8051Enthusiast's binja plugin to add support for 48k banking

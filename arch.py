@@ -74,6 +74,12 @@ class I8051Bank32K(I8051Core):
     address_size = i8051_variant.code_size()
     regs = i8051_variant.registers()
 
+class I8051Bank48K(I8051Core):
+    i8051_variant = variant.Variant(False, 0xC000)
+    name = i8051_variant.arch_name()
+    address_size = i8051_variant.code_size()
+    regs = i8051_variant.registers()
+
 class I8051XData24(I8051Core):
     i8051_variant = variant.Variant(True, None)
     name = i8051_variant.arch_name()
@@ -88,6 +94,12 @@ class I8051XData24Bank16K(I8051Core):
     
 class I8051XData24Bank32K(I8051Core):
     i8051_variant = variant.Variant(True, 0x8000)
+    name = i8051_variant.arch_name()
+    address_size = i8051_variant.code_size()
+    regs = i8051_variant.registers()
+    
+class I8051XData24Bank48K(I8051Core):
+    i8051_variant = variant.Variant(True, 0xC000)
     name = i8051_variant.arch_name()
     address_size = i8051_variant.code_size()
     regs = i8051_variant.registers()
